@@ -1,17 +1,19 @@
 from datetime import datetime
 
-_seed = datetime.now().microsecond % 255 + 1
 
-def set_seed(value):
-    global _seed
-    _seed = value
+class Random8(object):
+    def __init__(self):
+        self.set_seed(datetime.now().microsecond % 255 + 1)
 
-def random():
-    global _seed
-    _seed, carry = divmod(_seed, 2)
-    if carry:
-        _seed ^= 0xb8
-    return _seed
+    def set_seed(self, value):
+        self.seed = value
+
+    def random(self):
+        self.seed, carry = divmod(self.seed, 2)
+        if carry:
+            self.seed ^= 0xb8
+        return self.seed
 
 if __name__ == "__main__":
-    print(random())
+    random = Random8()
+    print(random.random())
