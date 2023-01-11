@@ -5,7 +5,7 @@ class Random8(object):
     def __init__(self):
         self.set_seed(datetime.now().microsecond % 255 + 1)
 
-    def set_seed(self, value):
+    def set_seed(self, value: str):
         self.seed = value
 
     def random(self):
